@@ -30,7 +30,7 @@ a {
     min-height:100%;
     z-index: 200;
     background: #000;
-    box-shadow: -3px 0 5px rgba(50, 50, 50, 0.5);
+    box-shadow: 3px 0 5px rgba(50, 50, 50, 0.5);
 }
 
 .menuOpen {
