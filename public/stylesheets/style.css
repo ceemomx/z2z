@@ -10,8 +10,6 @@ body {
     font: 14px "Open Sans", "Lucida Grande", Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
     background: #fcfcfc;
-    overflow:hidden;
-
 }
 
 a {
@@ -242,6 +240,10 @@ header {
 }
 
 @media screen and (min-width: 120px) and (max-width: 780px) {
+    body{
+        overflow-x:hidden;
+        width:100%;
+    }
     header {
         margin-bottom: 0;
         height:300px;
