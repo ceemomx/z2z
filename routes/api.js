@@ -22,6 +22,7 @@ router.post('/article/save', function (req, res) {
     req.body.publish = req.body.publish == 'true' ? true : false;
     console.log(req.body);
     req.body._id = generateID();
+    req.body.time = Date.now();
     db.article.insert(req.body, function (err) {
         if (err) return res.send({status: -1});
         res.send({status: 0})
