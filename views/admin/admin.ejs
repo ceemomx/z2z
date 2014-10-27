@@ -33,7 +33,7 @@
         <input name="published" type="checkbox"> Publish
     </label>
     <hr/>
-    <button type="submit" class="btn" id="modify">Submit</button>
+    <button type="submit" class="btn" id="modifyBtn">Submit</button>
 </div>
 </body>
 <style>
@@ -55,6 +55,7 @@
         $('#articles li').click(function(){
             $('#modify').show();
             var id = $(this).attr('rel');
+            $('#modify input[name=title]').attr('rel',id);
             $.ajax({url:'/api/article/one/'+id,type:'get',success:function(data){
                 $('#modify input[name=title]').val(data.data.title);
                 $('#modify input[name=wall]').val(data.data.wall);
@@ -62,7 +63,7 @@
                 $('#modify input[name=published]').attr('checked',data.data.publish);
             }});
         });
-        $('#modify').click(function(){
+        $('#modifyBtn').click(function(){
             var field = {
                 title:$('#modify input[name=title]').val(),
                 wall:$('#modify input[name=wall]').val(),
