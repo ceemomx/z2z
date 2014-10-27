@@ -12,6 +12,7 @@
 <body>
 <div>
     <input name="title" type="text" placeholder="Title" id="title"/>
+    <input name="wall" type="text" placeholder="imgurl" id="wall" />
     <textarea name="content" id="markdown_content" data-provide="markdown" rows="10"></textarea>
     <label class="checkbox">
         <input name="publish" type="checkbox"> Publish
@@ -19,17 +20,25 @@
     <hr/>
     <button type="submit" class="btn" id="save">Submit</button>
 </div>
-
-
-<div>
-    <a>添加</a>
-</div>
-<ul>
+<ul id="articles">
     <% articles.forEach(function(item){ %>
-    <li><%= item.title %></li>
+    <li rel="<%= item._id %>"><%= item.title %></li>
     <% }) %>
 </ul>
+<div id="modify">
+    <input name="title" type="text" placeholder="Title"  rel=""/>
+    <input name="wall" type="text" placeholder="imgurl" />
+    <textarea name="content" data-provide="markdown" rows="10"></textarea>
+    <label class="checkbox">
+        <input name="published" type="checkbox"> Publish
+    </label>
+    <hr/>
+    <button type="submit" class="btn" id="modify">Submit</button>
+</div>
 </body>
+<style>
+    #modify{display:none}
+</style>
 </html>
 <script src="/javascripts/bootstrap.min.js"></script>
 <script src="/javascripts/markdown.js"></script>
@@ -37,9 +46,32 @@
 <script>
     $("#markdown_content").markdown({autofocus: true, savable: false});
     $('#save').click(function(){
-        $.ajax({url:'/api/article/save',type:'POST', data:{title:$('#title').val(), content:$('#markdown_content').val(), publish: $('input[name=publish]').is(':checked')},
+        $.ajax({url:'/api/article/save',type:'POST', data:{title:$('#title').val(), content:$('#markdown_content').val(),wall:$('#wall').val(), publish: $('input[name=publish]').is(':checked')},
         success:function(data){
             alert(data.status);
         }})
+    });
+    $(function(){
+        $('#articles li').click(function(){
+            $('#modify').show();
+            var id = $(this).attr('rel');
+            $.ajax({url:'/api/article/one/'+id,type:'get',success:function(data){
+                $('#modify input[name=title]').val(data.data.title);
+                $('#modify input[name=wall]').val(data.data.wall);
+                $('#modify textarea[name=content]').val(data.data.content);
+                $('#modify input[name=published]').attr('checked',data.data.publish);
+            }});
+        });
+        $('#modify').click(function(){
+            var field = {
+                title:$('#modify input[name=title]').val(),
+                wall:$('#modify input[name=wall]').val(),
+                content:$('#modify textarea[name=content]').val(),
+                publish:$('input[name=published]').is(':checked')
+            };
+            $.ajax({url:'/api/article/modify/'+$('#modify input[name=title]').attr('rel'),type:'POST',data:field,success:function(data){
+                alert(data);
+            }});
+        });
     })
 </script>
