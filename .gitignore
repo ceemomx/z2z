@@ -1,0 +1,10 @@
+auditConfig.js
+node_modules
+test
+.idea/
+.DS_Store
+._.DS_Store
+*.log
+config.js
+*.swp
+*.swo
