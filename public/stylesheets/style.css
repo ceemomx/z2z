@@ -9,6 +9,7 @@
 body {
     font: 14px "Open Sans", "Lucida Grande", Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
+    position: relative;
     background: #fcfcfc;
     overflow-x:hidden;
 }
@@ -35,9 +36,10 @@ a {
 }
 
 #menu {
-    position: absolute;
+    position: fixed;
     left: 0;
     top: 0;
+    bottom:0;
     z-index: 100;
     width: 190px;
     height: 100%;
