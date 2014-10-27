@@ -13,7 +13,7 @@ function generateID() {
 }
 
 router.get('/article/all', function (req, res) {
-    db.article.find({publish: true}).toArray(function (err, list) {
+    db.article.find({publish: true}).sort({time:-1}).skip(((req.query.page - 1) * req.query.limit) || 0).limit(req.query.limit || 0).toArray(function (err, list) {
         res.send({list: list || []});
     })
 });
