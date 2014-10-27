@@ -25,6 +25,9 @@
     </header>
     <div class="main">
         <p>there is nothing here</p>
+        <ul id="articles">
+
+        </ul>
     </div>
 </div>
 
@@ -88,6 +91,11 @@
     $(function () {
         $(document).scroll(function () {
             $('#background').css('backgroundPosition', '50% ' + (+($(window).scrollTop() / 15) + 50) + '%');
-        })
+        });
+        $.ajax({url:'/api/article/all',type:'get',success:function(data){
+            data.list.forEach(function(item){
+                $('#articles').append('<li>'+ item.title +'</li>');
+            })
+        }});
     })
 </script>

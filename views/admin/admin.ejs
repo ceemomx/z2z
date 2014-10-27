@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>mengxi</title>
+    <link rel='stylesheet' href='/stylesheets/style.css'/>
+    <script src="/javascripts/jquery-1.10.2.min.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="/font-awesome/css/font-awesome.css" type="text/css"/>
+    <link rel="stylesheet" href="/stylesheets/bootstrap.min.css"/>
+    <script src="/markdown/js/bootstrap-markdown.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="/markdown/css/bootstrap-markdown.min.css"/>
+</head>
+<body>
+<div>
+    <input name="title" type="text" placeholder="Title" id="title"/>
+    <textarea name="content" id="markdown_content" data-provide="markdown" rows="10"></textarea>
+    <label class="checkbox">
+        <input name="publish" type="checkbox"> Publish
+    </label>
+    <hr/>
+    <button type="submit" class="btn" id="save">Submit</button>
+</div>
+
+
+<div>
+    <a>添加</a>
+</div>
+<ul>
+    <% articles.forEach(function(item){ %>
+    <li><%= item.title %></li>
+    <% }) %>
+</ul>
+</body>
+</html>
+<script src="/javascripts/bootstrap.min.js"></script>
+<script src="/javascripts/markdown.js"></script>
+<script src="/javascripts/to-markdown.js"></script>
+<script>
+    $("#markdown_content").markdown({autofocus: true, savable: false});
+    $('#save').click(function(){
+        $.ajax({url:'/api/article/save',type:'POST', data:{title:$('#title').val(), content:$('#markdown_content').val(), publish: $('input[name=publish]').is(':checked')},
+        success:function(data){
+            alert(data.status);
+        }})
+    })
+</script>
