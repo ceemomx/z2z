@@ -35,6 +35,11 @@ a {
 
 .menuOpen {
     /*left: 240px !important;*/
+    -webkit-transform: translate3d(-240px, 0, 0) scale3d(1, 1, 1);
+    -moz-transform: translate3d(-240px, 0, 0) scale3d(1, 1, 1);
+    -ms-transform: translateX(-240px);
+    -o-transform: translate(-240px, 0);
+    transform: translate3d(-240px, 0, 0) scale3d(1, 1, 1);
     transform: translate3d(-240px, 0, 0) scale3d(1, 1, 1);
 }
 
@@ -260,6 +265,10 @@ header {
     #articles li .time{top:5px;}
 
     .menuOpen {
+        -webkit-transform: translate3d(-200px, 0, 0) scale3d(1, 1, 1);
+        -moz-transform: translate3d(-200px, 0, 0) scale3d(1, 1, 1);
+        -ms-transform: translateX(-200px);
+        -o-transform: translate(-200px, 0);
         transform: translate3d(-200px, 0, 0) scale3d(1, 1, 1);
     }
 
