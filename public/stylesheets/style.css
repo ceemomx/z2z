@@ -4,14 +4,16 @@
     list-style: none;
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
     -webkit-user-select: none;
+    box-sizing: border-box;
+}
+html{    -webkit-font-smoothing: antialiased;
+    overflow:hidden;
 }
 
 body {
     font: 14px "Open Sans", "Lucida Grande", Helvetica, Arial, sans-serif;
-    -webkit-font-smoothing: antialiased;
     position: relative;
     background: #fcfcfc;
-    overflow-x:hidden;
 }
 
 a {
@@ -20,7 +22,11 @@ a {
 
 #wrap {
     position: relative;
-    left: 0;
+    min-width: 100%;
+    bottom: 100%;
+    padding-bottom:30px;
+    backface-visibility: hidden;
+    right:0;
     top: 0;
     transition: all 0.1s ease;
     width: 100%;
@@ -31,8 +37,8 @@ a {
 }
 
 .menuOpen {
-    left: 240px !important;
-    transition: all 0.1s ease;
+    /*left: 240px !important;*/
+    transform: translate3d(240px, 0, 0) scale3d(1, 1, 1);
 }
 
 #menu {
@@ -243,10 +249,7 @@ header {
 }
 
 @media screen and (min-width: 120px) and (max-width: 780px) {
-    body{
-        overflow-x:hidden;
-        width:100%;
-    }
+
     header {
         margin-bottom: 0;
         height:300px;
