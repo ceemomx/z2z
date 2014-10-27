@@ -5,17 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <meta name="apple-mobile-web-app-capable" content="yes"/>
     <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+    <link rel="stylesheet" href="/font-awesome/css/font-awesome.css" type="text/css"/>
     <link rel='stylesheet' href='/stylesheets/style.css'/>
     <script src="/javascripts/jquery-1.10.2.min.js" type="text/javascript"></script>
 </head>
 <body>
 <div id="menu">
-
+    <h2>about me</h2>
+    <h4>ZM. Mengxi</h4>
+    <p>I'm a photographer</p>
+    <p>also a web engineer</p>
+    <p>contact me with email</p>
+    <p>iloveloony@gmail.com</p>
 </div>
 <div id="wrap">
     <header>
         <div class="topMenu">
-
+            <a id="openMenu"><i class="fa fa-bars"></i></a>
         </div>
         <div class="title">
             <h1>welcome</h1>
@@ -28,24 +34,7 @@
     </header>
     <div class="main">
         <ul id="articles">
-            <!--<li>-->
-                <!--<span class="time">2013-04-15</span>-->
 
-                <!--<div>-->
-                    <!--<h3>哈哈哈</h3>-->
-                    <!--<h4>this is really shit</h4>-->
-                    <!--<img src="http://imgout.ph.126.net/34814009/autum.jpg">-->
-                <!--</div>-->
-            <!--</li>-->
-            <!--<li>-->
-                <!--<span class="time">2013-04-15</span>-->
-
-                <!--<div>-->
-                    <!--<h3>哈哈哈</h3>-->
-                    <!--<h4>this is really shit</h4>-->
-                    <!--<img src="http://imgout.ph.126.net/34814009/autum.jpg">-->
-                <!--</div>-->
-            <!--</li>-->
         </ul>
     </div>
 </div>
@@ -57,6 +46,9 @@
 <script src="/javascripts/to-markdown.js"></script>
 <script>
     $(function () {
+        $('#openMenu').click(function(){
+            $('#wrap').toggleClass('menuOpen');
+        });
         $(document).scroll(function () {
             $('#background').css('backgroundPosition', '50% ' + (+($(window).scrollTop() / 95) + 50) + '%');
         });

@@ -1,22 +1,71 @@
-*{margin:0;padding:0;list-style: none;
+* {
+    margin: 0;
+    padding: 0;
+    list-style: none;
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-    -webkit-user-select: none;}
+    -webkit-user-select: none;
+}
+
 body {
-  font: 14px "Open Sans","Lucida Grande", Helvetica, Arial, sans-serif;
+    font: 14px "Open Sans", "Lucida Grande", Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
-    background: #000;
+    background: #fcfcfc;
 
 }
+
+a {
+    cursor: pointer;
+}
+
+#wrap {
+    position: absolute;
+    left: 0;
+    top: 0;
+    transition: all 0.1s ease;
+    width: 100%;
+    min-height:100%;
+    z-index: 200;
+    background: #000;
+    box-shadow: -3px 0 5px rgba(50, 50, 50, 0.5);
+}
+
+.menuOpen {
+    left: 240px !important;
+    transition: all 0.1s ease;
+}
+
+#menu {
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 100;
+    width: 190px;
+    height: 100%;
+    padding: 3% 25px;
+    line-height: 25px;
+    text-align: center;
+    text-shadow: 1px 1px 1px rgba(150, 150, 150, 0.1);
+}
+
 header {
     height: 400px;
     overflow: hidden;
-    margin-bottom:35px;
+    margin-bottom: 35px;
 }
 
 .topMenu {
     height: 70px;
     width: 100%;
     background: rgba(0, 0, 0, 0.3)
+}
+
+.topMenu a#openMenu {
+    color: #fff;
+    font-size: 30px;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
+    margin-left: 20px;
+    margin-top: 5px;
+    float: left;
 }
 
 .title {
@@ -54,41 +103,102 @@ header {
     left: 0;
     top: 0;
     z-index: -10;
-    transition: all 0.1s ease;
+    transition: all 0.1s linear;
 }
-@keyframes getUp
-{
-    0% {opacity:0;top:100px}
-    35% {opacity:0.3;top:25px}
-    70% {opacity:0.7;top: -50px;}
-    100% {opacity:1;top:0;}
+
+@keyframes getUp {
+    0% {
+        opacity: 0;
+        top: 100px
+    }
+    25% {
+        opacity: 0.1;
+        top: 50px
+    }
+    50% {
+        opacity: 0.5;
+        top: 0;
+    }
+    75% {
+        opacity: 1;
+        top: -50px;
+    }
+    100% {
+        opacity: 1;
+        top: 0;
+    }
 }
 
 @-moz-keyframes getUp /* Firefox */
 {
-    0% {opacity:0;top:100px}
-    35% {opacity:0.3;top:25px}
-    70% {opacity:0.7;top: -50px;}
-    100% {opacity:1;top:0;}
+    0% {
+        opacity: 0;
+        top: 100px
+    }
+    25% {
+        opacity: 0.1;
+        top: 50px
+    }
+    50% {
+        opacity: 0.5;
+        top: 0;
+    }
+    75% {
+        opacity: 1;
+        top: -50px;
+    }
+    100% {
+        opacity: 1;
+        top: 0;
+    }
 }
-
 
 @-webkit-keyframes getUp /* Safari 和 Chrome */
 {
-    0% {opacity:0;top:100px}
-    25% {opacity:0.1;top:50px}
-    50% {opacity:0.5;top: 0;}
-    75% {opacity:1;top: -50px;}
-    100% {opacity:1;top:0;}
+    0% {
+        opacity: 0;
+        top: 100px
+    }
+    25% {
+        opacity: 0.1;
+        top: 50px
+    }
+    50% {
+        opacity: 0.5;
+        top: 0;
+    }
+    75% {
+        opacity: 1;
+        top: -50px;
+    }
+    100% {
+        opacity: 1;
+        top: 0;
+    }
 }
-
 
 @-o-keyframes getUp /* Opera */
 {
-    0% {opacity:0;top:100px}
-    35% {opacity:0.3;top:25px}
-    70% {opacity:0.7;top: -50px;}
-    100% {opacity:1;top:0;}
+    0% {
+        opacity: 0;
+        top: 100px
+    }
+    25% {
+        opacity: 0.1;
+        top: 50px
+    }
+    50% {
+        opacity: 0.5;
+        top: 0;
+    }
+    75% {
+        opacity: 1;
+        top: -50px;
+    }
+    100% {
+        opacity: 1;
+        top: 0;
+    }
 }
 
 #articles li {
@@ -104,8 +214,8 @@ header {
     transition: all 0.5s ease;
     line-height: 35px;
     animation: getUp 0.7s linear;
-    -moz-animation: getUp 0.7s linear;	/* Firefox */
-    -webkit-animation: getUp 0.7s linear;	/* Safari 和 Chrome */
+    -moz-animation: getUp 0.7s linear; /* Firefox */
+    -webkit-animation: getUp 0.7s linear; /* Safari 和 Chrome */
     -o-animation: getUp 0.7s linear;
 }
 
@@ -121,17 +231,25 @@ header {
     text-align: center;
     color: #fff;
     font-weight: bold;
-    z-index:999;
+    z-index: 999;
 }
-#articles li img{
+
+#articles li img {
     display: block;
-    max-width:100%;
-    margin:10px auto;
+    max-width: 100%;
+    margin: 10px auto;
 }
 
 @media screen and (min-width: 120px) and (max-width: 780px) {
-    header{margin-bottom:0}
-    #articles li {width:94%;padding:5% 3%;margin-bottom:1px;}
+    header {
+        margin-bottom: 0
+    }
+
+    #articles li {
+        width: 94%;
+        padding: 5% 3%;
+        margin-bottom: 1px;
+    }
 }
 
 
