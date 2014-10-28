@@ -44,5 +44,4 @@ router.get('/article/one/:id', function (req, res) {
     })
 });
 
-console.log(generateID());
 module.exports = router;

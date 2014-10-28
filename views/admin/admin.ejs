@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="/markdown/css/bootstrap-markdown.min.css"/>
 </head>
 <body>
-<div>
+<div class="addArticle">
     <input name="title" type="text" placeholder="Title" id="title"/>
     <input name="wall" type="text" placeholder="imgurl" id="wall" />
     <textarea name="content" id="markdown_content" data-provide="markdown" rows="10"></textarea>
@@ -20,7 +20,7 @@
     <hr/>
     <button type="submit" class="btn" id="save">Submit</button>
 </div>
-<ul id="articles">
+<ul id="list">
     <% articles.forEach(function(item){ %>
     <li rel="<%= item._id %>"><%= item.title %></li>
     <% }) %>
@@ -37,7 +37,11 @@
 </div>
 </body>
 <style>
+    .addArticle{padding:30px;}
+    #title,#wall{display:block;outline: 0;width:100%;padding:0 15px;height:35px;margin:10px auto;border:1px solid #ccc;border-radius:5px;}
     #modify{display:none}
+    #list{padding:30px;}
+    #list li{margin:10px auto;cursor:pointer;}
 </style>
 </html>
 <script src="/javascripts/bootstrap.min.js"></script>
@@ -48,11 +52,11 @@
     $('#save').click(function(){
         $.ajax({url:'/api/article/save',type:'POST', data:{title:$('#title').val(), content:$('#markdown_content').val(),wall:$('#wall').val(), publish: $('input[name=publish]').is(':checked')},
         success:function(data){
-            alert(data.status);
+            if(data.status==0) location.reload();
         }})
     });
     $(function(){
-        $('#articles li').click(function(){
+        $('#list li').click(function(){
             $('#modify').show();
             var id = $(this).attr('rel');
             $('#modify input[name=title]').attr('rel',id);
@@ -71,7 +75,7 @@
                 publish:$('input[name=published]').is(':checked')
             };
             $.ajax({url:'/api/article/modify/'+$('#modify input[name=title]').attr('rel'),type:'POST',data:field,success:function(data){
-                alert(data);
+                if(data.status==0) location.reload();
             }});
         });
     })
