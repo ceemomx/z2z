@@ -253,7 +253,7 @@ header {
 }
 
 .frontSize{
-    position:fixed!important;
+    position:relative!important;
     z-index: 1999;
     width:100%!important;
     left:0!important;

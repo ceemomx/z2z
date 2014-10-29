@@ -110,12 +110,9 @@
             msnry.reloadItems();
             init();
         }});
-        $('#articles li').on('click', function () {
+        $('#articles').delegate('li','click', function () {
             $(this).toggleClass('frontSize');
         });
-
         window.onresize = init;
-
-
     })
 </script>
