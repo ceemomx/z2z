@@ -54,6 +54,9 @@
         </ul>
     </div>
 </div>
+<div id="mask">
+
+</div>
 <script type="text/javascript">
     var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
     document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fe0fa54b3bdaf65cc3bec628bb6e82c06' type='text/javascript'%3E%3C/script%3E"));
@@ -111,7 +114,9 @@
             init();
         }});
         $('#articles').delegate('li','click', function () {
+            if($('body').width()<= 780) return false;
             $(this).toggleClass('frontSize');
+            msnry.layout();
         });
         window.onresize = init;
     })
