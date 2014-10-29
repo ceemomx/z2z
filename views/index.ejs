@@ -82,11 +82,7 @@
 
 
     };
-    var msnry = new Masonry( document.getElementById('articles'), {
-        itemSelector: 'li',
-        gutter: 10
-    });
-    msnry.bindResize();
+
     $(function () {
         $('#openMenu').click(function(){
             $('#wrap').toggleClass('menuOpen');
@@ -103,6 +99,11 @@
                 <div>'+markdown.toHTML(item.content)+'</div></li>');
                 $('#'+ item._id).show();
             });
+            var msnry = new Masonry( document.getElementById('articles'), {
+                itemSelector: 'li',
+                gutter: 10
+            });
+            msnry.bindResize();
             init();
         }});
         $('#articles li').on('click',function(){
