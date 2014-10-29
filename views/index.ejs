@@ -60,7 +60,7 @@
 <script src="/javascripts/markdown.js"></script>
 <script src="/javascripts/to-markdown.js"></script>
 <script>
-    var init = function(){
+    var init = function(msnry){
         var document_width = $('body').width();
 
         if(document_width > 1000 && document_width < 1500){
@@ -104,7 +104,7 @@
                 gutter: 10
             });
             msnry.bindResize();
-            init();
+            init(msnry);
         }});
         $('#articles li').on('click',function(){
             console.log('1');
