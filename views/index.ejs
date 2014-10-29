@@ -14,9 +14,13 @@
 <div id="menu">
     <h2>about me</h2>
     <h4>ZM. Mengxi</h4>
+
     <p>I'm a photographer</p>
+
     <p>also a web engineer</p>
+
     <p>contact me with email</p>
+
     <p>iloveloony@gmail.com</p>
 </div>
 <div id="wrap">
@@ -35,18 +39,18 @@
     </header>
     <div class="main">
         <ul id="articles">
-            <!--<li>-->
-                <!--<h3>this is a test for everything</h3>-->
-            <!--</li>-->
-            <!--<li>-->
-                <!--<h3>this is a test for everything</h3>-->
-            <!--</li>-->
-            <!--<li>-->
-                <!--<h3>this is a test for everything</h3>-->
-            <!--</li>-->
-            <!--<li>-->
-                <!--<h3>this is a test for everything</h3>-->
-            <!--</li>-->
+            <li>
+                <h3>this is a test for everything</h3>
+            </li>
+            <li>
+                <h3>this is a test for everything</h3>
+            </li>
+            <li>
+                <h3>this is a test for everything</h3>
+            </li>
+            <li>
+                <h3>this is a test for everything</h3>
+            </li>
         </ul>
     </div>
 </div>
@@ -60,31 +64,35 @@
 <script src="/javascripts/markdown.js"></script>
 <script src="/javascripts/to-markdown.js"></script>
 <script>
-    var init = function(msnry){
+    var msnry = new Masonry(document.getElementById('articles'), {
+        itemSelector: 'li',
+        gutter: 10
+    });
+    msnry.bindResize();
+
+    var init = function () {
         var document_width = $('body').width();
 
-        if(document_width > 1000 && document_width < 1500){
-            $('#articles li').width(($('body').width()/3)-30-13);
+        if (document_width > 1000 && document_width < 1500) {
+            $('#articles li').width(($('body').width() / 3) - 30 - 13);
 //                msnry.columnWidth =($('body').width()/5)-30
-        }else if(document_width > 780 && document_width < 1000){
-            $('#articles li').width(($('body').width()/2)-30-15);
+        } else if (document_width > 780 && document_width < 1000) {
+            $('#articles li').width(($('body').width() / 2) - 30 - 15);
 //                msnry.columnWidth =($('body').width()/4)-30
-        }else if(document_width > 1500){
-            $('#articles li').width(($('body').width()/4)-30-13);
+        } else if (document_width > 1500) {
+            $('#articles li').width(($('body').width() / 4) - 30 - 13);
 //                msnry.columnWidth =($('body').width()/6)-30
-        }else{
+        } else {
 //                msnry.columnWidth =($('body').width())-30;
-            $('#articles li').width(($('body').width())-30)
+            $('#articles li').width(($('body').width()) - 30)
         }
-        var resize = setTimeout(function(){
+        var resize = setTimeout(function () {
             msnry.layout();
-        },1000);
-
-
+        }, 1000);
     };
 
     $(function () {
-        $('#openMenu').click(function(){
+        $('#openMenu').click(function () {
             $('#wrap').toggleClass('menuOpen');
         });
         $(document).scroll(function () {
@@ -93,21 +101,16 @@
         $.ajax({url: '/api/article/all', type: 'get', success: function (data) {
             data.list.forEach(function (item) {
                 var time = new Date(item.time);
-                var date = ''+time.getFullYear() +'-'+ (+time.getMonth() + 1) +'-'+ time.getDate() ;
-                $('#articles').append('<li id="'+item._id+'" style="display:none">\
-                        <span class="time">'+date+'</span>\
-                <div>'+markdown.toHTML(item.content)+'</div></li>');
-                $('#'+ item._id).show();
+                var date = '' + time.getFullYear() + '-' + (+time.getMonth() + 1) + '-' + time.getDate();
+                $('#articles').append('<li id="' + item._id + '" style="display:none">\
+                        <span class="time">' + date + '</span>\
+                <div>' + markdown.toHTML(item.content) + '</div></li>');
+                $('#' + item._id).show();
             });
-            var msnry = new Masonry( document.getElementById('articles'), {
-                itemSelector: 'li',
-                gutter: 10
-            });
-            msnry.bindResize();
-            init(msnry);
+            msnry.reloadItems();
+            init();
         }});
-        $('#articles li').on('click',function(){
-            console.log('1');
+        $('#articles li').on('click', function () {
             $(this).toggleClass('frontSize');
         });
 

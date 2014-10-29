@@ -273,7 +273,6 @@ header {
     #articles li {
         width:100%;
         padding: 30px 15px;
-        margin-bottom: 1px;
     }
     #articles li .time{top:5px;}
 
