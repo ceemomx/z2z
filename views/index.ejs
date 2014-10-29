@@ -116,7 +116,7 @@
         $('#articles').delegate('li','click', function () {
             if($('body').width()<= 780) return false;
             $(this).toggleClass('frontSize');
-            msnry.layout();
+            init();
         });
         window.onresize = init;
     })
