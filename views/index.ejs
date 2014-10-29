@@ -7,6 +7,7 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
     <link rel="stylesheet" href="/font-awesome/css/font-awesome.css" type="text/css"/>
     <link rel='stylesheet' href='/stylesheets/style.css'/>
+    <script src="/javascripts/masonry.min.js" type="text/javascript"></script>
     <script src="http://libs.baidu.com/jquery/1.10.2/jquery.min.js"></script>
 </head>
 <body>
@@ -34,7 +35,18 @@
     </header>
     <div class="main">
         <ul id="articles">
-
+            <!--<li>-->
+                <!--<h3>this is a test for everything</h3>-->
+            <!--</li>-->
+            <!--<li>-->
+                <!--<h3>this is a test for everything</h3>-->
+            <!--</li>-->
+            <!--<li>-->
+                <!--<h3>this is a test for everything</h3>-->
+            <!--</li>-->
+            <!--<li>-->
+                <!--<h3>this is a test for everything</h3>-->
+            <!--</li>-->
         </ul>
     </div>
 </div>
@@ -48,6 +60,33 @@
 <script src="/javascripts/markdown.js"></script>
 <script src="/javascripts/to-markdown.js"></script>
 <script>
+    var init = function(){
+        var document_width = $('body').width();
+
+        if(document_width > 1000 && document_width < 1500){
+            $('#articles li').width(($('body').width()/3)-30-13);
+//                msnry.columnWidth =($('body').width()/5)-30
+        }else if(document_width > 780 && document_width < 1000){
+            $('#articles li').width(($('body').width()/2)-30-15);
+//                msnry.columnWidth =($('body').width()/4)-30
+        }else if(document_width > 1500){
+            $('#articles li').width(($('body').width()/4)-30-13);
+//                msnry.columnWidth =($('body').width()/6)-30
+        }else{
+//                msnry.columnWidth =($('body').width())-30;
+            $('#articles li').width(($('body').width())-30)
+        }
+        var resize = setTimeout(function(){
+            msnry.layout();
+        },1000);
+
+
+    };
+    var msnry = new Masonry( document.getElementById('articles'), {
+        itemSelector: 'li',
+        gutter: 10
+    });
+    msnry.bindResize();
     $(function () {
         $('#openMenu').click(function(){
             $('#wrap').toggleClass('menuOpen');
@@ -63,7 +102,16 @@
                         <span class="time">'+date+'</span>\
                 <div>'+markdown.toHTML(item.content)+'</div></li>');
                 $('#'+ item._id).show();
-            })
+            });
+            init();
         }});
+        $('#articles li').on('click',function(){
+            console.log('1');
+            $(this).toggleClass('frontSize');
+        });
+
+        window.onresize = init;
+
+
     })
 </script>
