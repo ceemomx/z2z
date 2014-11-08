@@ -253,11 +253,13 @@ header {
 }
 
 .frontSize{
-    position:relative!important;
+    position:fixed!important;
     z-index: 1999;
     /*width:100%!important;*/
     left:0!important;
     top:0!important;
+    overflow-y: scroll;
+    width:100%!important;
     transition: all 0.5s ease;
 }
 
