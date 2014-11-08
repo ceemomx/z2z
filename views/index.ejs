@@ -76,10 +76,10 @@
     var init = function () {
         var document_width = $('body').width();
         $('#articles').width($('.main').width()-20);
-        if (document_width > 1000 && document_width < 1500) {
+        if (document_width > 1200 && document_width < 1500) {
             $('#articles li').width(($('body').width() / 2) - 30 - 15);
 //                msnry.columnWidth =($('body').width()/5)-30
-        } else if (document_width > 780 && document_width < 1000) {
+        } else if (document_width > 780 && document_width < 1200) {
             $('#articles li').width(($('body').width() ) - 30 - 15);
 //                msnry.columnWidth =($('body').width()/4)-30
         } else if (document_width > 1500) {
@@ -113,12 +113,12 @@
             msnry.reloadItems();
             init();
         }});
-        $('#articles').delegate('li','click', function () {
-            if($('body').width()<= 780) return false;
-            $(this).toggleClass('frontSize');
-            if($(this).hasClass('frontSize')) $(this).width($('#articles').width()-33);
-            if(!$(this).hasClass('frontSize')) init();
-        });
+//        $('#articles').delegate('li','click', function () {
+//            if($('body').width()<= 780) return false;
+//            $(this).toggleClass('frontSize');
+//            if($(this).hasClass('frontSize')) $(this).width($('#articles').width()-33);
+//            if(!$(this).hasClass('frontSize')) init();
+//        });
         window.onresize = init;
     })
 </script>
