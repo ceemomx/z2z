@@ -116,17 +116,13 @@
         $('#articles').delegate('li','click', function () {
             if($('body').width()<= 780) return false;
             $(this).toggleClass('frontSize');
-//            if($(this).hasClass('frontSize')) $(this).width($('#articles').width()-30);
-            var bodyHeight = $('body').height();
-            var me = $(this);
+            if($(this).hasClass('frontSize')) $(this).width($('#articles').width()-30);
             if($(this).hasClass('frontSize')){
                 $('body').css('height',$(window).height()+'px');
                 $('body').css('overflow','hidden');
-                me.css('height',$(window).height()+'px');
             }else{
                 $('body').css('height','');
                 $('body').css('overflow','inherit');
-                me.css('height','');
             }
             if(!$(this).hasClass('frontSize')) init();
         });
