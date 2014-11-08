@@ -13,7 +13,7 @@ function generateID() {
 }
 
 router.get('/article/all', function (req, res) {
-    db.article.find({publish: true}).sort({time:-1}).skip(((req.query.page - 1) * req.query.limit) || 0).limit(req.query.limit || 0).toArray(function (err, list) {
+    db.article.find({publish: true}).sort({time: -1}).skip(((req.query.page - 1) * req.query.limit) || 0).limit(req.query.limit || 0).toArray(function (err, list) {
         res.send({list: list || []});
     })
 });
@@ -42,6 +42,19 @@ router.get('/article/one/:id', function (req, res) {
         if (err || !data) return res.send({status: -1, data: {}});
         res.send({status: 0, data: data});
     })
+});
+
+router.post('/header/modify', function (req, res) {
+    db.header.findAndModify({_id: 'headerbackground'}, [], {$set: {img: req.body.img}}, {new: true, upsert: true}, function (err) {
+        if (err) return res.send({msg: 'failed'});
+        res.send({msg: 'success'});
+    })
+});
+
+router.get('/header/get', function (req, res) {
+    db.header.findOne({_id:'headerbackground'},function(err, data){
+        res.send({data:data.img});
+    });
 });
 
 module.exports = router;

@@ -10,6 +10,10 @@
     <link rel="stylesheet" href="/markdown/css/bootstrap-markdown.min.css"/>
 </head>
 <body>
+<div class="modifyHeader">
+    <input name="headerBack" type="text" placeholder="headerBack" id="headerBack" >
+    <button type="button" id="headerBackSaveBtn">save</button>
+</div>
 <div class="addArticle">
     <input name="title" type="text" placeholder="Title" id="title"/>
     <input name="wall" type="text" placeholder="imgurl" id="wall" />
@@ -78,5 +82,13 @@
                 if(data.status==0) location.reload();
             }});
         });
+        $('#headerBackSaveBtn').click(function(){
+            $.ajax({url:'/api/header/modify',type:'POST',data:{img:$('#headerBack').val()},success:function(data){
+                alert(data.msg);
+            }})
+        });
+        $.ajax({url:'/api/header/get',type:'GET',success:function(data){
+            $('#headerBack').val(data.data);
+        }})
     })
 </script>
