@@ -119,10 +119,8 @@
             if($(this).hasClass('frontSize')) $(this).width($('#articles').width()-30);
             if($(this).hasClass('frontSize')){
                 $('body').css('height',$(window).height()+'px');
-                $('body').css('overflow','hidden');
             }else{
                 $('body').css('height','');
-                $('body').css('overflow','inherit');
             }
             if(!$(this).hasClass('frontSize')) init();
         });
