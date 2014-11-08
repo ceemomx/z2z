@@ -116,12 +116,7 @@
         $('#articles').delegate('li','click', function () {
             if($('body').width()<= 780) return false;
             $(this).toggleClass('frontSize');
-            if($(this).hasClass('frontSize')) $(this).width($('#articles').width());
-            if($(this).hasClass('frontSize')){
-                $('body').css('height',$(window).height()+'px');
-            }else{
-                $('body').css('height','');
-            }
+            if($(this).hasClass('frontSize')) $(this).width($('#articles').width()-30);
             if(!$(this).hasClass('frontSize')) init();
         });
         window.onresize = init;
